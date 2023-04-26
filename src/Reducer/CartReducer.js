@@ -1,13 +1,14 @@
+import { Actiontypes } from './../Actions/types';
 let initialData = {
     cartitems : []
 }
 const CartReducer = (state =initialData , action) =>{
     switch(action.type) {
-        case "ADDCARTITEM" : return {
+        case Actiontypes.ADDCARTITEM : return {
             ...state,
-            cartitems:[...state.cartitems, action.payload]
+            cartitems: action.payload
         }
-        case "DELETEITEM" : return {
+        case Actiontypes.DELETECARTITEM : return {
             ...state,
             cartitems : action.payload
         }

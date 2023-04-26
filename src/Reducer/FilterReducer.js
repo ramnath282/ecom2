@@ -2,9 +2,9 @@ import {Actiontypes} from "../Actions/types"
 let initialData = {
     products : []
 }
-const ItemReducer = (state = initialData, action) => {
+const FilterReducer = (state = initialData, action) => {
   switch (action.type) {
-    case Actiontypes.FETCHPRODUCTS:
+      case Actiontypes.FILTERPRODUCTDATA:
       return {
         ...state,
         products: action.payload
@@ -12,4 +12,4 @@ const ItemReducer = (state = initialData, action) => {
   }
   return state;
 };
-export default ItemReducer;
+export default FilterReducer;
