@@ -90,10 +90,10 @@ export default function Additem({history}) {
           <div className="col-sm-10">
           <select className="form-select form-select-sm product_type" aria-label=".form-select-sm example">
             <option defaultValue="Select Type">Select Type</option>
-            <option value="mobile">mobile</option>
-            <option value="laptop">laptop</option>
-            <option value="tv">tv</option>
-            <option value="others">others</option>
+            <option value="mobile">electronics</option>
+            <option value="laptop">jewelery</option>
+            <option value="tv">men's clothing</option>
+            <option value="others">women's clothing</option>
           </select>
             <div className="product_type_error" style={{display:"none"}}>Select type</div>
           </div>

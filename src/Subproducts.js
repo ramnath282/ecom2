@@ -1,42 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Item from "./Components/Item";
 import Title from './Components/Title';
 import Sidebar from "./Components/Sidebar";
 
-export default function Product() {
-
+export default function Subproducts() {
   const productObj = useSelector(store => store.ItemReducer);
+  const FilterproductObj = useSelector(store => store.FilterReducer);
+  const { filterName } = useParams();
   const dispatch = useDispatch();
 
-  const fetchProducts = async () => {
+  const fetchFilterproductpage = async (filtername) => {
     const response = await axios
-      .get("https://fakestoreapi.com/products")
+      .get(`https://fakestoreapi.com/products/category/${filtername}`)
       .catch((err) => {
         console.log("Err: ", err);
       });
-    dispatch({type:"FETCH_PRODUCTS",payload : response.data});
+    dispatch({type:"FILTER_PRODUCT_DATA", payload : response.data});
   };
 
-  
-
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    if (filterName && filterName !== "") fetchFilterproductpage(filterName);
+  }, [filterName]);
+
   return (
     <div className="container">
       <div className="row">
-        <Title></Title>
+      <Title></Title>
+
         <div className="col-sm-2">
           <div>
-              <Sidebar></Sidebar>
+          <Sidebar></Sidebar>
           </div>
         </div>
         <div className="col-sm-10">
           <div className="row">
-            {productObj.products.map((item) => (
+          {FilterproductObj.products.map((item) => (
               <Item item={item} />
             ))}
           </div>
